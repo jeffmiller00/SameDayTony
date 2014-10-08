@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 require 'open-uri'
 
-begin_attempt = 1412609984 + 82001
-delta_attempt = 10000
+start = Time.now
+begin_attempt = 1412696563 + 82001
+delta_attempt = 1000
 
 rands = (begin_attempt..begin_attempt+delta_attempt).to_a
 success_url_1 = success_url_2 = ''
@@ -55,4 +56,5 @@ end
 
 puts "1st Ep: #{success_url_1}"
 puts "2nd Ep: #{success_url_2}"
-puts "Last  : #{last}"
+puts "Last  : #{begin_attempt + delta_attempt}"
+puts "Time  : #{Time.now - start}"
