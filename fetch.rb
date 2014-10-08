@@ -1,11 +1,6 @@
 #!/usr/bin/env ruby
 require 'open-uri'
 
-# http://cdn.stationcaster.com/stations/wtem/media/mpeg/09_04_14_The_Tony_Kornheiser_Show_Hour_2-1409844173.mp3
-# 09_04_14_The_Tony_Kornheiser_Show_Hour_1-1409843995.mp3
-# 09_04_14_The_Tony_Kornheiser_Show_Hour_2-1409844173.mp3
-# 09_15_14_The_Tony_Kornheiser_Show_Hour_2-1410795506.mp3
-
 begin_attempt = 1412609984 + 82001
 delta_attempt = 10000
 
@@ -27,17 +22,12 @@ while !rands.empty? do
   puts "Attempted URL:: #{url_attempt_1}" if i < 3
 
 
-#require 'pry'
-#binding.pry
-
   if success_url_1 == ''
     begin
       remote_data = open("#{url_attempt_1}").read
       success_url_1 = url_attempt_1
     rescue OpenURI::HTTPError => e
-      if e.message == '404 Not Found'
-        #next
-      else
+      if e.message != '404 Not Found'
         puts url_attempt_1
         puts url_attempt_2
         raise e
