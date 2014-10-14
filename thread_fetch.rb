@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 require 'thread'
 require 'open-uri'
-require 'pry'
+#require 'pry'
 start = Time.now
 work_q = Queue.new
 
-begin_attempt = 1412696563 + 80001 
-delta_attempt = 10000
+begin_attempt = 1413155844 + 1
+delta_attempt = 100000
 (begin_attempt..begin_attempt+delta_attempt).to_a.each{|x| work_q.push x }
 success_url_1 = success_url_2 = ''
 
-workers = (0...6).map do
+workers = (0...12).map do
   Thread.new do
     begin
       while r = work_q.pop(true)
@@ -62,3 +62,6 @@ puts "1st Ep: #{success_url_1}"
 puts "2nd Ep: #{success_url_2}"
 puts "Last  : #{begin_attempt + delta_attempt}"
 puts "Time  : #{Time.now - start}"
+puts '===================================================='
+puts "#{Time.now.month}/#{Time.now.day}/14 Ep 1: #{success_url_1} #freemrtony @TKLittles"
+puts "#{Time.now.month}/#{Time.now.day}/14 Ep 2: #{success_url_2} #freemrtony @TKLittles"
